@@ -6,15 +6,16 @@ using namespace std;
 
 class FileMatrixSource : public MatrixSource
 {
-private:
+protected:
 	string path;
+	int matrixN;
 	;
 public:
 	FileMatrixSource(string path) : path(path)
 	{
 	}
 
-	double** GetSystem(int* N) override
+	double** GetMatrix(int* N) override
 	{
 		ifstream f(path);
 		int dim1, dim2;
@@ -28,8 +29,9 @@ public:
 			for (int j = 0; j < dim2; j++)
 				f >> matrix[i][j];
 		}
-		*N = dim1;
 		f.close();
+		*N = dim1;
+		matrixN = dim1;
 		return matrix;
 	}
 };

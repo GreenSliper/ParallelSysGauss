@@ -43,7 +43,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -102,8 +102,10 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_HAS_STD_BYTE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <OpenMPSupport>true</OpenMPSupport>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,8 +131,11 @@
   <ItemGroup>
     <ClCompile Include="FileMatrixSource.cpp" />
     <ClCompile Include="GaussSolver.h" />
+    <ClCompile Include="GaussTester.cpp" />
     <ClCompile Include="NaiveGaussSolver.cpp" />
+    <ClCompile Include="ParallelGaussSolver.cpp" />
     <ClCompile Include="ParallelSysGauss.cpp" />
+    <ClCompile Include="TestMatrixSource.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MatrixSource.h" />

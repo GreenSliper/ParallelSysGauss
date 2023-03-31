@@ -4,12 +4,12 @@
 using namespace std;
 
 
-class NaiveGaussSolver : public GaussSolver
+class ParallelGaussSolver : public GaussSolver
 {
 public:
 
-	double* SolveSystem(double** mat, int N) override
-	{
+    double* SolveSystem(double** mat, int N) override
+    {
         /* reduction into r.e.f. */
         int singular_flag = forwardElim(mat, N);
 
@@ -33,13 +33,13 @@ public:
         /* get solution to system and print it using
            backward substitution */
         return backSub(mat, N);
-	}
+    }
     ;
 private:
     // function for elementary operation of swapping two rows
     void swap_row(double** mat, int N, int i, int j)
     {
-        double *tmp = mat[i];
+        double* tmp = mat[i];
         mat[i] = mat[j];
         mat[j] = tmp;
     }
@@ -64,6 +64,7 @@ private:
             int v_max = mat[i_max][k];
 
             /* find greater amplitude for pivot if any */
+            //#pragma omp parallel for
             for (int i = k + 1; i < N; i++)
                 if (abs(mat[i][k]) > v_max)
                     v_max = mat[i][k], i_max = i;

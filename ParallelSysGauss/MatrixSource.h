@@ -3,5 +3,5 @@
 class MatrixSource
 {
 public:
-	virtual double** GetSystem(int* N) = 0;
+	virtual double** GetMatrix(int* N) = 0;
 };
