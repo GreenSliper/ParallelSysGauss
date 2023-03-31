@@ -5,6 +5,8 @@
 #include <vector>
 #include <algorithm>
 
+#define _HAS_STD_BYTE 0
+
 class TestFileMatrixSource : public FileMatrixSource
 {
 private:
@@ -17,8 +19,9 @@ private:
             // go to one spot before the EOF
             fin.seekg(-1, ios_base::end);
 
-            bool keepLooping = true;
-            while (keepLooping) {
+            int keepLooping = 1;
+            while (keepLooping) 
+            {
                 char ch;
                 // Get current byte's data
                 fin.get(ch);
@@ -27,11 +30,11 @@ private:
                 {
                     // The first line is the last line
                     fin.seekg(0);
-                    keepLooping = false;
+                    keepLooping = 0;
                 }
                 // If the data was a newline
                 else if (ch == '\n')
-                    keepLooping = false;
+                    keepLooping = 0;
                 // If the data was neither a newline nor at the 0 byte
                 else
                     fin.seekg(-2, ios_base::cur);

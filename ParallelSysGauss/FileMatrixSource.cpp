@@ -2,6 +2,8 @@
 #include <iostream>
 #include <fstream>
 
+#define _HAS_STD_BYTE 0
+
 using namespace std;
 
 class FileMatrixSource : public MatrixSource

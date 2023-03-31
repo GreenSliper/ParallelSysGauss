@@ -3,6 +3,7 @@
 #include <Windows.h>
 #include <vector>
 #include <string>
+#define _HAS_STD_BYTE 0
 
 class GaussTester
 {
@@ -40,15 +41,15 @@ private:
         return results;
     }
 
-    bool CompareArrays(double* arr1, double* arr2, int N)
+    int CompareArrays(double* arr1, double* arr2, int N)
     {
         for(int i = 0; i < N; i++)
         if(abs(arr1[i]-arr2[i]) > 0.0001)
-            return false;
-        return true;
+            return 0;
+        return 1;
     }
 
-	bool StartTest(GaussSolver* solver, TestFileMatrixSource testSrc)
+	int StartTest(GaussSolver* solver, TestFileMatrixSource testSrc)
 	{
         int N = 0;
         auto matrix = testSrc.GetMatrix(&N);

@@ -2,7 +2,7 @@
 #include <iostream>
 
 using namespace std;
-
+#define _HAS_STD_BYTE 0
 
 class ParallelGaussSolver : public GaussSolver
 {
@@ -64,7 +64,7 @@ private:
             int v_max = mat[i_max][k];
 
             /* find greater amplitude for pivot if any */
-            //#pragma omp parallel for
+            #pragma omp parallel for
             for (int i = k + 1; i < N; i++)
                 if (abs(mat[i][k]) > v_max)
                     v_max = mat[i][k], i_max = i;
