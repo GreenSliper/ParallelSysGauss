@@ -79,7 +79,7 @@ private:
             if (i_max != k)
                 swap_row(mat, N, k, i_max);
 
-
+            #pragma omp parallel for
             for (int i = k + 1; i < N; i++)
             {
                 /* factor f to set current row kth element to 0,
@@ -105,6 +105,7 @@ private:
 
         /* Start calculating from last equation up to the
            first */
+        #pragma omp parallel for
         for (int i = N - 1; i >= 0; i--)
         {
             /* start with the RHS of the equation */
