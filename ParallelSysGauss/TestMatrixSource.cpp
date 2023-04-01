@@ -55,18 +55,17 @@ public:
     {
     }
 
-	vector<double> ReadAnswer()
+	double* ReadAnswer()
 	{
         auto lastLine = ReadFileLastLine();
         stringstream llss(lastLine);
-        vector<double> result;
+        double *result = new double[matrixN];
         double x;
         for (int i = 0; i < matrixN; i++)
         {
             llss >> x;
-            result.push_back(x);
+            result[i] = x;
         }
-        reverse(result.begin(), result.end());
         return result;
 	}
 };

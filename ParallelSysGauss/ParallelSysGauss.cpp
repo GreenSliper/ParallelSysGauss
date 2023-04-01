@@ -13,8 +13,7 @@ using namespace std;
 
 void RunTests(GaussSolver* gs)
 {
-	NaiveGaussSolver* ngs = new NaiveGaussSolver();
-	GaussTester tester(ngs);
+	GaussTester tester;
 	tester.Test(gs);
 }
 

@@ -26,7 +26,6 @@ public:
             else
                 printf("May have infinitely many "
                     "solutions.");
-
             return NULL;
         }
 

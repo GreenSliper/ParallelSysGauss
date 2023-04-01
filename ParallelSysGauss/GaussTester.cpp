@@ -9,8 +9,6 @@ class GaussTester
 {
 private:
 
-    GaussSolver* trustedSolver;
-
     vector<string> GetAllFiles(string folder)
     {
         vector<string> names;
@@ -53,15 +51,17 @@ private:
 	{
         int N = 0;
         auto matrix = testSrc.GetMatrix(&N);
-        auto res1 = trustedSolver->SolveSystem(matrix, N);
+        auto res1 = testSrc.ReadAnswer();
         auto res2 = solver->SolveSystem(matrix, N);
-        return CompareArrays(res1, res2, N);
-	}
+        auto result = CompareArrays(res1, res2, N);
+        delete res1;
+        delete res2;
+        return result;
+    }
 ;
 public:
-    GaussTester(GaussSolver* trustedSolver)
+    GaussTester()
     {
-        this->trustedSolver = trustedSolver;
     }
 	void Test(GaussSolver* solver)
 	{
