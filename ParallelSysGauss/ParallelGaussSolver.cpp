@@ -1,11 +1,17 @@
 #include "GaussSolver.h"
 #include <iostream>
+#include <omp.h>
 
 using namespace std;
 
 class ParallelGaussSolver : public GaussSolver
 {
 public:
+
+    ParallelGaussSolver()
+    {
+        //omp_set_num_threads(16);
+    }
 
     double* SolveSystem(double** mat, int N) override
     {
@@ -103,14 +109,14 @@ private:
 
         /* Start calculating from last equation up to the
            first */
-        for (int i = N - 1; i >= 0; i--)
+        int i = 0;
+        for (i = N - 1; i >= 0; i--)
         {
             /* start with the RHS of the equation */
             x[i] = mat[i][N];
 
             /* Initialize j to i+1 since matrix is upper
                triangular*/
-            #pragma omp parallel for
             for (int j = i + 1; j < N; j++)
             {
                 /* subtract all the lhs values

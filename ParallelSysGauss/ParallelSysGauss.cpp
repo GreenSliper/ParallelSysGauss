@@ -54,7 +54,7 @@ int main()
 	GaussSolver* sgs = new NaiveGaussSolver();
 	cout << "NAIVE" << endl;
 	RunSpeedTests(sgs, 220, 222, 1024);
-
+	cin >> N;
 	/*MatrixSource* ms = new FileMatrixSource("matrix.txt");
 	auto matrix = ms->GetMatrix(&N);
 	double* result = gs->SolveSystem(matrix, N);
