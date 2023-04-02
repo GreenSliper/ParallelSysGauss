@@ -123,6 +123,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <OpenMPSupport>true</OpenMPSupport>
       <AdditionalOptions>-D_HAS_STD_BYTE=0 -D_HAS_STD_BOOLEAN=0 %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -135,12 +136,15 @@
     <ClCompile Include="FileMatrixSource.cpp" />
     <ClCompile Include="GaussSolver.h" />
     <ClCompile Include="GaussTester.cpp" />
+    <ClCompile Include="MatrixRandomSource.cpp" />
     <ClCompile Include="NaiveGaussSolver.cpp" />
     <ClCompile Include="ParallelGaussSolver.cpp" />
     <ClCompile Include="ParallelSysGauss.cpp" />
+    <ClCompile Include="SimpleGaussSpeedTester.cpp" />
     <ClCompile Include="TestMatrixSource.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GaussSpeedTester.h" />
     <ClInclude Include="MatrixSource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

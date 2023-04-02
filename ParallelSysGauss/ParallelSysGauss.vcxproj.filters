@@ -36,9 +36,18 @@
     <ClCompile Include="TestMatrixSource.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="MatrixRandomSource.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleGaussSpeedTester.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MatrixSource.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="GaussSpeedTester.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
   </ItemGroup>

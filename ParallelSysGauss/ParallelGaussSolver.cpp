@@ -2,7 +2,6 @@
 #include <iostream>
 
 using namespace std;
-#define _HAS_STD_BYTE 0
 
 class ParallelGaussSolver : public GaussSolver
 {
@@ -16,16 +15,16 @@ public:
         /* if matrix is singular */
         if (singular_flag != -1)
         {
-            printf("Singular Matrix.\n");
+            //printf("Singular Matrix.\n");
 
             /* if the RHS of equation corresponding to
                zero row  is 0, * system has infinitely
                many solutions, else inconsistent*/
-            if (mat[singular_flag][N])
-                printf("Inconsistent System.");
-            else
-                printf("May have infinitely many "
-                    "solutions.");
+            //if (mat[singular_flag][N])
+            //    printf("Inconsistent System.");
+            //else
+            //    printf("May have infinitely many "
+            //        "solutions.");
             return NULL;
         }
 
@@ -104,7 +103,6 @@ private:
 
         /* Start calculating from last equation up to the
            first */
-        #pragma omp parallel for
         for (int i = N - 1; i >= 0; i--)
         {
             /* start with the RHS of the equation */
@@ -112,6 +110,7 @@ private:
 
             /* Initialize j to i+1 since matrix is upper
                triangular*/
+            #pragma omp parallel for
             for (int j = i + 1; j < N; j++)
             {
                 /* subtract all the lhs values

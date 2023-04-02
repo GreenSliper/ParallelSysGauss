@@ -16,16 +16,16 @@ public:
         /* if matrix is singular */
         if (singular_flag != -1)
         {
-            printf("Singular Matrix.\n");
+            //printf("Singular Matrix.\n");
 
             /* if the RHS of equation corresponding to
                zero row  is 0, * system has infinitely
                many solutions, else inconsistent*/
-            if (mat[singular_flag][N])
+            /*if (mat[singular_flag][N])
                 printf("Inconsistent System.");
             else
                 printf("May have infinitely many "
-                    "solutions.");
+                    "solutions.");*/
 
             return NULL;
         }

@@ -47,15 +47,26 @@ private:
         return 1;
     }
 
-	int StartTest(GaussSolver* solver, TestFileMatrixSource testSrc)
+	int StartTest(GaussSolver* solver, TestFileMatrixSource testSrc, bool printFalseResults)
 	{
         int N = 0;
         auto matrix = testSrc.GetMatrix(&N);
         auto res1 = testSrc.ReadAnswer();
         auto res2 = solver->SolveSystem(matrix, N);
         auto result = CompareArrays(res1, res2, N);
-        delete res1;
-        delete res2;
+        if (!result && printFalseResults)
+        {
+            cout << endl;
+            for (int i = 0; i < N; i++)
+                cout << res1[i] << " ";
+            cout << endl;
+            for (int i = 0; i < N; i++)
+                cout << res2[i] << " ";
+            cout << endl;
+            cout << endl;
+        }
+        delete[] res1;
+        delete[] res2;
         return result;
     }
 ;
@@ -63,14 +74,14 @@ public:
     GaussTester()
     {
     }
-	void Test(GaussSolver* solver)
+	void Test(GaussSolver* solver, bool printFalseResults = 1)
 	{
         auto testFiles = FindTests(GetAllFiles("."));
         for (auto testFile : testFiles)
         {
             TestFileMatrixSource testSrc(testFile);
             cout << "Running test: " << testFile;
-            if (StartTest(solver, testSrc))
+            if (StartTest(solver, testSrc, printFalseResults))
                 cout << " | SUCCESS";
             else
                 cout << " | FAILED";
